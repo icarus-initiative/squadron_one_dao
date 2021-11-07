@@ -40,3 +40,11 @@ client_svelte/build
 client_svelte/.svelte-kit
 client_svelte/package
 client_svelte/.env
+
+# Program Anchor ignores
+program_anchor/.anchor
+program_anchor/.DS_Store
+program_anchor/target
+program_anchor/**/*.rs.bk
+program_anchor/node_modules
+
