@@ -1,12 +1,12 @@
 [package]
-name = "program_anchor"
+name = "first_squadron_dao"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "program_anchor"
+name = "first_squadron_dao"
 
 [features]
 no-entrypoint = []
