@@ -1,0 +1,12 @@
+[programs.localnet]
+first_squadron_dao = "SuzqjpoMTRp778HYDrbtYGuM95CzwiNMGwh4hmtWkD3"
+
+[registry]
+url = "https://anchor.projectserum.com"
+
+[provider]
+cluster = "localnet"
+wallet = "/home/khoassantx/.config/solana/id.json"
+
+[scripts]
+test = "mocha -t 1000000 tests/"

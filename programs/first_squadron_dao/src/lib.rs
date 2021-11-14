@@ -1,30 +1,33 @@
 use anchor_lang::prelude::*;
 
-declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
+declare_id!("SuzqjpoMTRp778HYDrbtYGuM95CzwiNMGwh4hmtWkD3");
 
 #[program]
 pub mod first_squadron_dao {
     use super::*;
     pub fn initialize(ctx: Context<Initialize>) -> ProgramResult {
-        let proposal = &mut ctx.accounts.proposal;
-        proposal.yay = 0;
-        proposal.nay = 0;
-        proposal.accumulator = 0;
-        proposal.total = 0;
+        let proposal_account = &mut ctx.accounts.proposal_account;
+        proposal_account.yay = 0;
+        proposal_account.nay = 0;
+        proposal_account.total = 0;
         Ok(())
     }
 
     pub fn vote_yay(ctx: Context<Vote>) -> ProgramResult {
-        let proposal = &mut ctx.accounts.proposal;
-        proposal.yay += 1;
-        proposal.accumulator += 1;
+        let proposal_account = &mut ctx.accounts.proposal_account;
+        proposal_account.yay += 1;
+        proposal_account.total += 1;
         Ok(())
     }
     
     pub fn vote_nay(ctx: Context<Vote>) -> ProgramResult {
-        let proposal = &mut ctx.accounts.proposal;
-        proposal.nay += 1;
-        proposal.accumulator += 1;
+        let proposal_account = &mut ctx.accounts.proposal_account;
+        proposal_account.nay += 1;
+        proposal_account.total += 1;
+        Ok(())
+    }
+
+    pub fn count_votes(_ctx: Context<Vote>) -> ProgramResult {
         Ok(())
     }
 }
@@ -32,7 +35,7 @@ pub mod first_squadron_dao {
 #[derive(Accounts)]
 pub struct Initialize<'info> {
     #[account(init, payer = user, space = 16 + 16)]
-    pub proposal: Account<'info, Proposal>,
+    pub proposal_account: Account<'info, ProposalAccount>,
     #[account(mut)]
     pub user: Signer<'info>,
     pub system_program: Program<'info, System>,
@@ -41,16 +44,14 @@ pub struct Initialize<'info> {
 #[derive(Accounts)]
 pub struct Vote<'info> {
     #[account(mut)]
-    pub proposal: Account<'info, Proposal>,
+    pub proposal_account: Account<'info, ProposalAccount>,
 }
 
 #[account]
-pub struct Proposal {
+pub struct ProposalAccount {
     pub yay: u8,
     pub nay: u8,
-    pub accumulator: u8,
     pub total: u8,
-    pub has_voted: u64
 }
 
 pub struct Pilots {
