@@ -3,7 +3,7 @@ use anchor_lang::prelude::*;
 declare_id!("HRtvmXDXyGRLU9sVCuMY3x99f3p1NT1p28Fur4ZhH3iz");
 
 #[program]
-pub mod first_squadron_dao {
+pub mod squadron_one_dao {
     use super::*;
 
     // =====================
@@ -103,11 +103,11 @@ pub mod first_squadron_dao {
                     choice: p_choice,
                 });
 
-                if p_choice == 1 {
-                    main_state.yay += 1;
-                }
-                else {
+                if p_choice == 0 {
                     main_state.nay += 1;
+                }
+                else if p_choice == 1 {
+                    main_state.yay += 1;
                 }
             }
             else {

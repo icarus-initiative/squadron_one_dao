@@ -2,7 +2,7 @@ import * as anchor from '@project-serum/anchor';
 const assert = require('assert');
 const { SystemProgram, PublicKey } = anchor.web3;
 
-describe('first_squadron_dao', () => {
+describe('squadron_one_dao', () => {
   // Initialize Setup
   // ====================================================================================
   // We set up the provider from the wallet in our OS system folder.
@@ -13,7 +13,7 @@ describe('first_squadron_dao', () => {
   // Configure the client to use the local cluster.
   const provider = anchor.Provider.env();
   anchor.setProvider(provider);
-  const program = anchor.workspace.FirstSquadronDao;
+  const program = anchor.workspace.SquadronOneDao;
 
   // Create Keypair for our program.
   const mainState = anchor.web3.Keypair.generate();
@@ -106,7 +106,7 @@ describe('first_squadron_dao', () => {
   // Test 3: Checking Whitelist Additions
   // ====================================================================================
   // We just check that whitelist1 Publickey was added to the whitelist.
-  it('Vector contains 965-PwN', async () => {
+  it('Vector contains whitelist member: 965-PwN', async () => {
     console.log('========================');
     const pilot = new PublicKey(
       '965QwptcVkD7otW4bxHeDrWoXMcbGzyGqbAUjcjvfPwN'
@@ -137,7 +137,9 @@ describe('first_squadron_dao', () => {
     });
 
     const account = await program.account.mainState.fetch(mainState.publicKey);
-    console.log('Non-whitelist member votes yay', account.yay);
+
+    console.log('Yays', account.yay);
+    console.log('Nays', account.nay);
     assert.ok(account.yay == 0);
   });
 
@@ -148,7 +150,7 @@ describe('first_squadron_dao', () => {
   // NOTE: We can't change the provider.wallet after we started test suite.
   // Therefore, we must test using the provider as the whitelisted member.
   // AKA, one can't send their vote in from another wallet address, at least in the test suite.
-  it('Add to whitelist and vote yay', async () => {
+  it('Member is whitelist and votes yay', async () => {
     console.log('========================');
     await program.rpc.addWhitelist([provider.wallet.publicKey], {
       accounts: {
