@@ -1,12 +1,12 @@
 [package]
-name = "program_anchor"
+name = "squadron_one_dao"
 version = "0.1.0"
 description = "Created with Anchor"
 edition = "2018"
 
 [lib]
 crate-type = ["cdylib", "lib"]
-name = "program_anchor"
+name = "squadron_one_dao"
 
 [features]
 no-entrypoint = []
@@ -15,4 +15,4 @@ cpi = ["no-entrypoint"]
 default = []
 
 [dependencies]
-anchor-lang = "0.18.0"
+anchor-lang = "0.17.0"
