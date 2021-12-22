@@ -18,26 +18,27 @@ Cargo.lock
 # Client React ignores
 
 # dependencies
-client_react/node_modules
-client_react/.pnp
-client_react/.pnp.js
+app_react/node_modules
+app_react/.pnp
+app_react/.pnp.js
 
 # testing
-client_react/coverage
+app_react/coverage
 
 # production
-client_react/build
+app_react/build
 
 # misc
-client_react/.DS_Store
-client_react/.env.local
-client_react/.env.development.local
-client_react/.env.test.local
-client_react/.env.production.local
+app_react/.DS_Store
+app_react/.env.local
+app_react/.env.development.local
+app_react/.env.test.local
+app_react/.env.production.local
 
-client_react/npm-debug.log*
-client_react/yarn-debug.log*
-client_react/yarn-error.log*
+app_react/npm-debug.log*
+app_react/yarn-debug.log*
+app_react/yarn-error.log*
+app_react/src/keypair.json
 
 # client svelte ignores
 client_svelte/.DS_Store
